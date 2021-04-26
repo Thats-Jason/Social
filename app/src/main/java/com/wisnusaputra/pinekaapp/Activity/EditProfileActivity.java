@@ -4,16 +4,15 @@ import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -67,7 +66,7 @@ public class EditProfileActivity extends AppCompatActivity {
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         storageRef = FirebaseStorage.getInstance().getReference("uploads");
 
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users").child(firebaseUser.getUid());
+        DatabaseReference reference = FirebaseDatabase.getInstance("https://social-media-debc4-default-rtdb.firebaseio.com/").getReference("Users").child(firebaseUser.getUid());
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -123,7 +122,7 @@ public class EditProfileActivity extends AppCompatActivity {
 
     private void updateProfile(String fullname, String username, String bio){
 
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Users").child(firebaseUser.getUid());
+        DatabaseReference reference = FirebaseDatabase.getInstance("https://social-media-debc4-default-rtdb.firebaseio.com/").getReference().child("Users").child(firebaseUser.getUid());
 
         HashMap<String, Object> map = new HashMap<>();
         map.put("fullname", fullname);
@@ -165,7 +164,7 @@ public class EditProfileActivity extends AppCompatActivity {
                         Uri downloadUri = task.getResult();
                         String miUrlOk = downloadUri.toString();
 
-                        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users").child(firebaseUser.getUid());
+                        DatabaseReference reference = FirebaseDatabase.getInstance("https://social-media-debc4-default-rtdb.firebaseio.com/").getReference("Users").child(firebaseUser.getUid());
                         HashMap<String, Object> map1 = new HashMap<>();
                         map1.put("imageurl", ""+miUrlOk);
                         reference.updateChildren(map1);

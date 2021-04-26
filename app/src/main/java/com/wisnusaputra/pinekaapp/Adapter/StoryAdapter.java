@@ -108,7 +108,7 @@ public class StoryAdapter extends RecyclerView.Adapter<StoryAdapter.ViewHolder>{
     }
 
     private void userInfo(final ViewHolder viewHolder, String userid, final int pos){
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users").child(userid);
+        DatabaseReference reference = FirebaseDatabase.getInstance("https://social-media-debc4-default-rtdb.firebaseio.com/").getReference("Users").child(userid);
         reference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -136,7 +136,7 @@ public class StoryAdapter extends RecyclerView.Adapter<StoryAdapter.ViewHolder>{
     }
 
     private void myStory(final TextView textView, final ImageView imageView, final boolean click){
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Story")
+        DatabaseReference reference = FirebaseDatabase.getInstance("https://social-media-debc4-default-rtdb.firebaseio.com/").getReference("Story")
                 .child(FirebaseAuth.getInstance().getCurrentUser().getUid());
         reference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -195,7 +195,7 @@ public class StoryAdapter extends RecyclerView.Adapter<StoryAdapter.ViewHolder>{
     }
 
     private void seenStory(final ViewHolder viewHolder, String userid){
-        DatabaseReference reference  = FirebaseDatabase.getInstance().getReference("Story")
+        DatabaseReference reference  = FirebaseDatabase.getInstance("https://social-media-debc4-default-rtdb.firebaseio.com/").getReference("Story")
                 .child(userid);
         reference.addValueEventListener(new ValueEventListener() {
             @Override

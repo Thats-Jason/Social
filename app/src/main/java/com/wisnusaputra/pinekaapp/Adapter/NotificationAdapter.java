@@ -109,7 +109,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
     }
 
     private void getUserInfo(final ImageView imageView, final TextView username, String publisherid){
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference()
+        DatabaseReference reference = FirebaseDatabase.getInstance("https://social-media-debc4-default-rtdb.firebaseio.com/").getReference()
                 .child("Users").child(publisherid);
 
         reference.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -128,7 +128,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
     }
 
     private void getPostImage(final ImageView post_image, String postid){
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference()
+        DatabaseReference reference = FirebaseDatabase.getInstance("https://social-media-debc4-default-rtdb.firebaseio.com/").getReference()
                 .child("Posts").child(postid);
 
         reference.addListenerForSingleValueEvent(new ValueEventListener() {

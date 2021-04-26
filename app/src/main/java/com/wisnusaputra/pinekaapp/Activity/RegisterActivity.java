@@ -104,7 +104,7 @@ public class RegisterActivity extends AppCompatActivity {
                             FirebaseUser firebaseUser = auth.getCurrentUser();
                             String userID = firebaseUser.getUid();
 
-                            reference = FirebaseDatabase.getInstance().getReference().child("Users").child(userID);
+                            reference = FirebaseDatabase.getInstance("https://social-media-debc4-default-rtdb.firebaseio.com/").getReference().child("Users").child(userID);
                             HashMap<String, Object> map = new HashMap<>();
                             map.put("id", userID);
                             map.put("username", username.toLowerCase());

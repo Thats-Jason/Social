@@ -4,11 +4,13 @@ import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.net.Uri;
+
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.webkit.MimeTypeMap;
 import android.widget.Toast;
+
 
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -79,7 +81,7 @@ public class AddStoryActivity extends AppCompatActivity {
 
                         String myid = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
-                        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Story")
+                        DatabaseReference reference = FirebaseDatabase.getInstance("https://social-media-debc4-default-rtdb.firebaseio.com/").getReference("Story")
                                 .child(myid);
 
                         String storyid = reference.push().getKey();

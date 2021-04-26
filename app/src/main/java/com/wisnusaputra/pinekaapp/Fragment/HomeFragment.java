@@ -99,31 +99,31 @@ public class HomeFragment extends Fragment {
 
     private void checkFollowing(){
         followingList = new ArrayList<>();
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Follow")
-                .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                .child("following");
-
-        reference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                followingList.clear();
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()){
-                    followingList.add(snapshot.getKey());
-                }
-
-                readPosts();
-                readStory();
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
+//        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Follow")
+//                .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+//                .child("following");
+//
+//        reference.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot) {
+//                followingList.clear();
+//                for (DataSnapshot snapshot : dataSnapshot.getChildren()){
+//                    followingList.add(snapshot.getKey());
+//                }
+//
+//                readPosts();
+//                readStory();
+//            }
+//
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//
+//            }
+//        });
     }
 
     private void readPosts(){
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Posts");
+        DatabaseReference reference = FirebaseDatabase.getInstance("https://social-media-debc4-default-rtdb.firebaseio.com/").getReference("Posts");
 
         reference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -150,7 +150,7 @@ public class HomeFragment extends Fragment {
     }
 
     private void readStory(){
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Story");
+        DatabaseReference reference = FirebaseDatabase.getInstance("https://social-media-debc4-default-rtdb.firebaseio.com/").getReference("Story");
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {

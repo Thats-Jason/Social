@@ -127,16 +127,16 @@ public class ProfileFragment extends Fragment {
 
                 } else if (btn.equals("follow")){
 
-                    FirebaseDatabase.getInstance().getReference().child("Follow").child(firebaseUser.getUid())
+                    FirebaseDatabase.getInstance("https://social-media-debc4-default-rtdb.firebaseio.com/").getReference().child("Follow").child(firebaseUser.getUid())
                             .child("following").child(profileid).setValue(true);
-                    FirebaseDatabase.getInstance().getReference().child("Follow").child(profileid)
+                    FirebaseDatabase.getInstance("https://social-media-debc4-default-rtdb.firebaseio.com/").getReference().child("Follow").child(profileid)
                             .child("followers").child(firebaseUser.getUid()).setValue(true);
                     addNotification();
                 } else if (btn.equals("following")){
 
-                    FirebaseDatabase.getInstance().getReference().child("Follow").child(firebaseUser.getUid())
+                    FirebaseDatabase.getInstance("https://social-media-debc4-default-rtdb.firebaseio.com/").getReference().child("Follow").child(firebaseUser.getUid())
                             .child("following").child(profileid).removeValue();
-                    FirebaseDatabase.getInstance().getReference().child("Follow").child(profileid)
+                    FirebaseDatabase.getInstance("https://social-media-debc4-default-rtdb.firebaseio.com/").getReference().child("Follow").child(profileid)
                             .child("followers").child(firebaseUser.getUid()).removeValue();
 
                 }
@@ -210,7 +210,7 @@ public class ProfileFragment extends Fragment {
     }
 
     private void addNotification(){
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Notifications").child(profileid);
+        DatabaseReference reference = FirebaseDatabase.getInstance("https://social-media-debc4-default-rtdb.firebaseio.com/").getReference("Notifications").child(profileid);
 
         HashMap<String, Object> hashMap = new HashMap<>();
         hashMap.put("userid", firebaseUser.getUid());
@@ -222,7 +222,7 @@ public class ProfileFragment extends Fragment {
     }
 
     private void userInfo(){
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users").child(profileid);
+        DatabaseReference reference = FirebaseDatabase.getInstance("https://social-media-debc4-default-rtdb.firebaseio.com/").getReference("Users").child(profileid);
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -251,7 +251,7 @@ public class ProfileFragment extends Fragment {
     }
 
     private void checkFollow(){
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference()
+        DatabaseReference reference = FirebaseDatabase.getInstance("https://social-media-debc4-default-rtdb.firebaseio.com/").getReference()
                 .child("Follow").child(firebaseUser.getUid()).child("following");
         reference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -271,7 +271,7 @@ public class ProfileFragment extends Fragment {
     }
 
     private void getFollowers(){
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Follow").child(profileid).child("followers");
+        DatabaseReference reference = FirebaseDatabase.getInstance("https://social-media-debc4-default-rtdb.firebaseio.com/").getReference("Follow").child(profileid).child("followers");
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -284,7 +284,7 @@ public class ProfileFragment extends Fragment {
             }
         });
 
-        DatabaseReference reference1 = FirebaseDatabase.getInstance().getReference("Follow").child(profileid).child("following");
+        DatabaseReference reference1 = FirebaseDatabase.getInstance("https://social-media-debc4-default-rtdb.firebaseio.com/").getReference("Follow").child(profileid).child("following");
         reference1.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -299,7 +299,7 @@ public class ProfileFragment extends Fragment {
     }
 
     private void getNrPosts(){
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Posts");
+        DatabaseReference reference = FirebaseDatabase.getInstance("https://social-media-debc4-default-rtdb.firebaseio.com/").getReference("Posts");
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -321,7 +321,7 @@ public class ProfileFragment extends Fragment {
     }
 
     private void myFotos(){
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Posts");
+        DatabaseReference reference = FirebaseDatabase.getInstance("https://social-media-debc4-default-rtdb.firebaseio.com/").getReference("Posts");
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -345,7 +345,7 @@ public class ProfileFragment extends Fragment {
 
     private void mySaves(){
         mySaves = new ArrayList<>();
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Saves").child(firebaseUser.getUid());
+        DatabaseReference reference = FirebaseDatabase.getInstance("https://social-media-debc4-default-rtdb.firebaseio.com/").getReference("Saves").child(firebaseUser.getUid());
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -363,7 +363,7 @@ public class ProfileFragment extends Fragment {
     }
 
     private void readSaves(){
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Posts");
+        DatabaseReference reference = FirebaseDatabase.getInstance("https://social-media-debc4-default-rtdb.firebaseio.com/").getReference("Posts");
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {

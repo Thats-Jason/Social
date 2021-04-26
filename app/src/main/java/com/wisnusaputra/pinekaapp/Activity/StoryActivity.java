@@ -1,15 +1,16 @@
 package com.wisnusaputra.pinekaapp.Activity;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
 
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -131,7 +132,7 @@ public class StoryActivity extends AppCompatActivity implements StoriesProgressV
         story_delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Story")
+                DatabaseReference reference = FirebaseDatabase.getInstance("https://social-media-debc4-default-rtdb.firebaseio.com/").getReference("Story")
                         .child(userid).child(storyids.get(counter));
                 reference.removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
@@ -193,7 +194,7 @@ public class StoryActivity extends AppCompatActivity implements StoriesProgressV
     private void getStories(String userid){
         images = new ArrayList<>();
         storyids = new ArrayList<>();
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Story")
+        DatabaseReference reference = FirebaseDatabase.getInstance("https://social-media-debc4-default-rtdb.firebaseio.com/").getReference("Story")
                 .child(userid);
         reference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -229,7 +230,7 @@ public class StoryActivity extends AppCompatActivity implements StoriesProgressV
     }
 
     private void userInfo(String userid){
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users")
+        DatabaseReference reference = FirebaseDatabase.getInstance("https://social-media-debc4-default-rtdb.firebaseio.com/").getReference("Users")
                 .child(userid);
         reference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -248,12 +249,12 @@ public class StoryActivity extends AppCompatActivity implements StoriesProgressV
 
     //
     private void addView(String storyid){
-        FirebaseDatabase.getInstance().getReference().child("Story").child(userid)
+        FirebaseDatabase.getInstance("https://social-media-debc4-default-rtdb.firebaseio.com/").getReference("https://social-media-debc4-default-rtdb.firebaseio.com/").child("Story").child(userid)
                 .child(storyid).child("views").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(true);
     }
 
     private void seenNumber(String storyid){
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Story")
+        DatabaseReference reference = FirebaseDatabase.getInstance("https://social-media-debc4-default-rtdb.firebaseio.com/").getReference("Story")
                 .child(userid).child(storyid).child("views");
         reference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override

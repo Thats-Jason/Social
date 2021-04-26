@@ -11,22 +11,21 @@
     android:paddingRight="20dp"
     tools:context=".Activity.StartActivity">
 
-    <ImageView
-        android:layout_alignParentTop="true"
-        android:id="@+id/logo"
-        android:layout_marginTop="50dp"
-        android:layout_width="match_parent"
-        android:layout_height="186dp"
-        android:src="@drawable/logo"/>
+<!--    <ImageView-->
+<!--        android:layout_alignParentTop="true"-->
+<!--        android:id="@+id/logo"-->
+<!--        android:layout_marginTop="50dp"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="186dp"-->
+<!--        android:src="@drawable/onboarding_pager_round_icon"/>-->
 
     <TextView
         android:id="@+id/txt_welcome"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/logo"
         android:layout_marginTop="30dp"
         android:maxLines="5"
-        android:text="Welcome to Pineka"
+        android:text="Welcome to my Social Media"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:layout_marginRight="20dp"
@@ -39,8 +38,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/txt_welcome"
         android:layout_marginTop="30dp"
+        android:text="Enjoy with your friends!"
         android:maxLines="5"
-        android:text="Lorem Ipsum hanyalah teks tiruan dari industri percetakan dan penyusunan huruf"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:layout_marginRight="20dp"

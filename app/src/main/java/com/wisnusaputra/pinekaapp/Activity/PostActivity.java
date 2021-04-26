@@ -4,9 +4,10 @@ import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.net.Uri;
+
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.webkit.MimeTypeMap;
@@ -123,7 +124,7 @@ public class PostActivity extends AppCompatActivity {
                             Uri downloadUri = task.getResult();
                             miUrlOk = downloadUri.toString();
 
-                            DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Posts");
+                            DatabaseReference reference = FirebaseDatabase.getInstance("https://social-media-debc4-default-rtdb.firebaseio.com/").getReference("Posts");
 
                             String postid = reference.push().getKey();
 

@@ -162,12 +162,12 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ImageViewHolde
             @Override
             public void onClick(View view) {
                 if (holder.like.getTag().equals("like")) {
-                    FirebaseDatabase.getInstance().getReference().child("Likes").child(post.getPostid())
+                    FirebaseDatabase.getInstance("https://social-media-debc4-default-rtdb.firebaseio.com/").getReference().child("Likes").child(post.getPostid())
                             .child(firebaseUser.getUid()).setValue(true);
                     addNotification(post.getPublisher(), post.getPostid());
                     holder.like.startAnimation(holder.imgbounce);
                 } else {
-                    FirebaseDatabase.getInstance().getReference().child("Likes").child(post.getPostid())
+                    FirebaseDatabase.getInstance("https://social-media-debc4-default-rtdb.firebaseio.com/").getReference().child("Likes").child(post.getPostid())
                             .child(firebaseUser.getUid()).removeValue();
                 }
             }
@@ -177,10 +177,10 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ImageViewHolde
             @Override
             public void onClick(View view) {
                 if (holder.save.getTag().equals("save")){
-                    FirebaseDatabase.getInstance().getReference().child("Saves").child(firebaseUser.getUid())
+                    FirebaseDatabase.getInstance("https://social-media-debc4-default-rtdb.firebaseio.com/").getReference().child("Saves").child(firebaseUser.getUid())
                             .child(post.getPostid()).setValue(true);
                 } else {
-                    FirebaseDatabase.getInstance().getReference().child("Saves").child(firebaseUser.getUid())
+                    FirebaseDatabase.getInstance("https://social-media-debc4-default-rtdb.firebaseio.com/").getReference().child("Saves").child(firebaseUser.getUid())
                             .child(post.getPostid()).removeValue();
                 }
             }
@@ -277,7 +277,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ImageViewHolde
                                 return true;
                             case R.id.delete:
                                 final String id = post.getPostid();
-                                FirebaseDatabase.getInstance().getReference("Posts")
+                                FirebaseDatabase.getInstance("https://social-media-debc4-default-rtdb.firebaseio.com/").getReference("Posts")
                                         .child(post.getPostid()).removeValue()
                                         .addOnCompleteListener(new OnCompleteListener<Void>() {
                                             @Override
@@ -350,7 +350,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ImageViewHolde
     }
 
     private void addNotification(String userid, String postid){
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Notifications").child(userid);
+        DatabaseReference reference = FirebaseDatabase.getInstance("https://social-media-debc4-default-rtdb.firebaseio.com/").getReference("Notifications").child(userid);
 
         HashMap<String, Object> hashMap = new HashMap<>();
         hashMap.put("userid", firebaseUser.getUid());
@@ -363,7 +363,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ImageViewHolde
     }
 
     private void deleteNotifications(final String postid, String userid){
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Notifications").child(userid);
+        DatabaseReference reference = FirebaseDatabase.getInstance("https://social-media-debc4-default-rtdb.firebaseio.com/").getReference("Notifications").child(userid);
         reference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -388,7 +388,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ImageViewHolde
     }
 
     private void nrLikes(final TextView likes, String postId){
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Likes").child(postId);
+        DatabaseReference reference = FirebaseDatabase.getInstance("https://social-media-debc4-default-rtdb.firebaseio.com/").getReference().child("Likes").child(postId);
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -404,7 +404,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ImageViewHolde
     }
 
     private void getCommetns(String postId, final TextView comments){
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Comments").child(postId);
+        DatabaseReference reference = FirebaseDatabase.getInstance("https://social-media-debc4-default-rtdb.firebaseio.com/").getReference().child("Comments").child(postId);
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -419,7 +419,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ImageViewHolde
     }
 
     private void publisherInfo(final ImageView image_profile, final TextView username, final TextView publisher, final String userid){
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference()
+        DatabaseReference reference = FirebaseDatabase.getInstance("https://social-media-debc4-default-rtdb.firebaseio.com/").getReference()
                 .child("Users").child(userid);
 
         reference.addValueEventListener(new ValueEventListener() {
@@ -442,7 +442,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ImageViewHolde
 
         final FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference()
+        DatabaseReference reference = FirebaseDatabase.getInstance("https://social-media-debc4-default-rtdb.firebaseio.com/").getReference()
                 .child("Likes").child(postid);
         reference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -467,7 +467,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ImageViewHolde
 
         final FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference()
+        DatabaseReference reference = FirebaseDatabase.getInstance("https://social-media-debc4-default-rtdb.firebaseio.com/").getReference()
                 .child("Saves").child(firebaseUser.getUid());
         reference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -509,7 +509,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ImageViewHolde
                         HashMap<String, Object> hashMap = new HashMap<>();
                         hashMap.put("description", editText.getText().toString());
 
-                        FirebaseDatabase.getInstance().getReference("Posts")
+                        FirebaseDatabase.getInstance("https://social-media-debc4-default-rtdb.firebaseio.com/").getReference("Posts")
                                 .child(postid).updateChildren(hashMap);
                     }
                 });
@@ -524,7 +524,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ImageViewHolde
     }
 
     private void getText(String postid, final EditText editText){
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Posts")
+        DatabaseReference reference = FirebaseDatabase.getInstance("https://social-media-debc4-default-rtdb.firebaseio.com/").getReference("Posts")
                 .child(postid);
         reference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override

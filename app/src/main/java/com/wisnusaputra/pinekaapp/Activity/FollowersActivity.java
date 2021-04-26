@@ -1,8 +1,9 @@
 package com.wisnusaputra.pinekaapp.Activity;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -79,7 +80,7 @@ public class FollowersActivity extends AppCompatActivity {
     }
 
     private void getViews(){
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Story")
+        DatabaseReference reference = FirebaseDatabase.getInstance("https://social-media-debc4-default-rtdb.firebaseio.com/").getReference("Story")
                 .child(id).child(getIntent().getStringExtra("storyid")).child("views");
         reference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -99,7 +100,7 @@ public class FollowersActivity extends AppCompatActivity {
     }
 
     private void getFollowers() {
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Follow")
+        DatabaseReference reference = FirebaseDatabase.getInstance("https://social-media-debc4-default-rtdb.firebaseio.com/").getReference("Follow")
                 .child(id).child("followers");
         reference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -119,7 +120,7 @@ public class FollowersActivity extends AppCompatActivity {
     }
 
     private void getFollowing() {
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Follow")
+        DatabaseReference reference = FirebaseDatabase.getInstance("https://social-media-debc4-default-rtdb.firebaseio.com/").getReference("Follow")
                 .child(id).child("following");
         reference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -139,7 +140,7 @@ public class FollowersActivity extends AppCompatActivity {
     }
 
     private void getLikes() {
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Likes")
+        DatabaseReference reference = FirebaseDatabase.getInstance("https://social-media-debc4-default-rtdb.firebaseio.com/").getReference("Likes")
                 .child(id);
         reference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -159,7 +160,7 @@ public class FollowersActivity extends AppCompatActivity {
     }
 
     private void showUsers() {
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users");
+        DatabaseReference reference = FirebaseDatabase.getInstance("https://social-media-debc4-default-rtdb.firebaseio.com/").getReference("Users");
         reference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -172,7 +173,7 @@ public class FollowersActivity extends AppCompatActivity {
                         }
                     }
                 }
-                userAdapter.notifyDataSetChanged();
+                userAdapter.notify();
             }
 
             @Override

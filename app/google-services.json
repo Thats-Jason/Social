@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "588087164218",
+    "project_id": "social-media-debc4",
+    "storage_bucket": "social-media-debc4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:588087164218:android:c1e287cef29b6a2ac9e403",
+        "android_client_info": {
+          "package_name": "com.wisnusaputra.pinekaapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "588087164218-o62tkvd681170s9733t6mdnh6unoocpq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBr2j7WiMHSU6Tk_CsSG_TMayE1kIzcmww"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "588087164218-o62tkvd681170s9733t6mdnh6unoocpq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

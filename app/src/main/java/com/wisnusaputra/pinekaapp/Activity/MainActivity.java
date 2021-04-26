@@ -1,17 +1,14 @@
 package com.wisnusaputra.pinekaapp.Activity;
-
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.CountDownTimer;
+
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.MenuItem;
-import android.widget.Toast;
+
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.wisnusaputra.pinekaapp.Fragment.HomeFragment;
@@ -60,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
 
                     switch (item.getItemId()){
                         case R.id.nav_home:
-                            selectedfragment = new HomeFragment();
+                            selectedfragment =new HomeFragment();
                             break;
                         case R.id.nav_search:
                             selectedfragment = new SearchFragment();

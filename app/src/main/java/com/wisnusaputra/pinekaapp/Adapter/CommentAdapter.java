@@ -12,7 +12,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -95,7 +94,7 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.ImageVie
                     alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Yes",
                             new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int which) {
-                                    FirebaseDatabase.getInstance().getReference("Comments")
+                                    FirebaseDatabase.getInstance("https://social-media-debc4-default-rtdb.firebaseio.com/").getReference("Comments")
                                             .child(postid).child(comment.getCommentid())
                                             .removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
                                         @Override
@@ -136,7 +135,7 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.ImageVie
     }
 
     private void getUserInfo(final ImageView imageView, final TextView username, String publisherid){
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference()
+        DatabaseReference reference = FirebaseDatabase.getInstance("https://social-media-debc4-default-rtdb.firebaseio.com/").getReference()
                 .child("Users").child(publisherid);
 
         reference.addValueEventListener(new ValueEventListener() {

@@ -1,8 +1,8 @@
 package com.wisnusaputra.pinekaapp.Activity;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -96,7 +96,7 @@ public class CommentsActivity extends AppCompatActivity {
 
     private void addComment(){
 
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Comments").child(postid);
+        DatabaseReference reference = FirebaseDatabase.getInstance("https://social-media-debc4-default-rtdb.firebaseio.com/").getReference("Comments").child(postid);
 
         String commentid = reference.push().getKey();
 
@@ -112,7 +112,7 @@ public class CommentsActivity extends AppCompatActivity {
     }
 
     private void addNotification(){
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Notifications").child(publisherid);
+        DatabaseReference reference = FirebaseDatabase.getInstance("https://social-media-debc4-default-rtdb.firebaseio.com/").getReference("Notifications").child(publisherid);
 
         HashMap<String, Object> hashMap = new HashMap<>();
         hashMap.put("userid", firebaseUser.getUid());
@@ -124,7 +124,7 @@ public class CommentsActivity extends AppCompatActivity {
     }
 
     private void getImage(){
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users").child(firebaseUser.getUid());
+        DatabaseReference reference = FirebaseDatabase.getInstance("https://social-media-debc4-default-rtdb.firebaseio.com/").getReference("Users").child(firebaseUser.getUid());
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -140,7 +140,7 @@ public class CommentsActivity extends AppCompatActivity {
     }
 
     private void readComments(){
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Comments").child(postid);
+        DatabaseReference reference = FirebaseDatabase.getInstance("https://social-media-debc4-default-rtdb.firebaseio.com/").getReference("Comments").child(postid);
 
         reference.addValueEventListener(new ValueEventListener() {
             @Override

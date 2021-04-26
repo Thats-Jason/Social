@@ -2,10 +2,12 @@ package com.wisnusaputra.pinekaapp.Activity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+
+import android.os.Bundle;
+
 import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.AppCompatEditText;
 import android.text.TextUtils;
 import android.view.View;
@@ -13,7 +15,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -101,7 +102,7 @@ public class LoginActivity extends AppCompatActivity {
 
                                     if (task.isSuccessful()) {
 
-                                        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Users")
+                                        DatabaseReference reference = FirebaseDatabase.getInstance("https://social-media-debc4-default-rtdb.firebaseio.com/").getReference().child("Users")
                                                 .child(auth.getCurrentUser().getUid());
 
                                         reference.addValueEventListener(new ValueEventListener() {

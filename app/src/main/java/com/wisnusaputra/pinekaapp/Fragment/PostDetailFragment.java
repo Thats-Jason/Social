@@ -70,7 +70,7 @@ public class PostDetailFragment extends Fragment {
     }
 
     private void readPost(){
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Posts").child(postid);
+        DatabaseReference reference = FirebaseDatabase.getInstance("https://social-media-debc4-default-rtdb.firebaseio.com/").getReference("Posts").child(postid);
 
         reference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
